@@ -17,8 +17,6 @@
 
                         <div class="flex-col items-center justify-center text-center">
                             <a href="#" class="btn btn-primary">Tambah Obat</a>
-
-                            <p class="text-sm text-gray-600">{{ __('Created.') }}</p>
                         </div>
                     </header>
 
