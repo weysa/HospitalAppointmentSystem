@@ -22,29 +22,31 @@ edit
                             </p>
                         </header>
 
-                        <form class="mt-6" action="#" method="">
+                        <form class="mt-6" action="{{route('dokter.obat.update', $obat->id)}}" method="POST">
+                            @csrf
+                            @method('PUT')
                             <div class="mb-3 form-group">
                                 <label for="editNamaObatInput">Nama</label>
                                 <input type="text" class="rounded form-control" id="editNamaObatInput"
-                                    value="Paracetamol" name="nama_obat">
+                                    value="{{ $obat->nama_obat }}" name="nama_obat">
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="editKemasanInput">Kemasan</label>
                                 <input type="text" class="rounded form-control" id="editKemasanInput"
-                                    value="Tablet 500 mg" name="kemasan">
+                                    value="{{ $obat->kemasan }}" name="kemasan">
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="editHargaInput">Harga</label>
                                 <input type="text" class="rounded form-control" id="editHargaInput"
-                                    value="10000" name="harga">
+                                    value="{{ $obat->harga }}" name="harga">
                             </div>
 
-                            <a type="button" href="#" class="btn btn-secondary">
+                            <a type="button" href="{{route('dokter.obat.index')}}" class="btn btn-secondary">
                                 Batal
                             </a>
-                            <button type="submit" href="#" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary">
                                 Update
                             </button>
                         </form>

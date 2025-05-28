@@ -23,7 +23,8 @@ create
                             </p>
                         </header>
 
-                        <form class="mt-6" id="formObat" action="#" method="">
+                        <form class="mt-6" id="formObat" action="{{route('dokter.obat.store', )}}" method="POST">
+                            @csrf
                             <div class="mb-3 form-group">
                                 <label for="namaObat">Nama Obat</label>
                                 <input type="text" class="rounded form-control" id="namaObat" name="nama_obat" value="Paracetamol">
@@ -37,10 +38,10 @@ create
                                 <input type="text" class="rounded form-control" id="harga" name="harga" value="10000">
                             </div>
 
-                            <a type="button" href="#" class="btn btn-secondary">
+                            <a type="button" href="{{route('dokter.obat.index')}}" class="btn btn-secondary">
                                 Batal
                             </a>
-                            <button type="submit" href="#" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary">
                                 Simpan
                             </button>
                         </form>

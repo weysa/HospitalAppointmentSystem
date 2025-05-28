@@ -16,7 +16,7 @@
                         </h2>
 
                         <div class="flex-col items-center justify-center text-center">
-                            <a href="#" class="btn btn-primary">Tambah Obat</a>
+                            <a href="{{route('dokter.obat.create')}}" class="btn btn-primary">Tambah Obat</a>
                         </div>
                     </header>
 
@@ -31,36 +31,22 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($obats as $obat )
                             <tr>
-                                <th scope="row" class="align-middle text-start">1</th>
-                                <td class="align-middle text-start">Paracetamol</td>
-                                <td class="align-middle text-start">Tablet 500 mg</td>
-                                <td class="align-middle text-start">Rp10.000</td>
+                                <th scope="row" class="align-middle text-start">{{ $obat->id }}</th>
+                                <td class="align-middle text-start">{{ $obat->nama_obat }}</td>
+                                <td class="align-middle text-start">{{ $obat->kemasan }}</td>
+                                <td class="align-middle text-start">{{ $obat->harga }}</td>
                                 <td class="flex items-center gap-3">
-                                    <a href="#" class="btn btn-secondary btn-sm">Edit</a>
-                                    <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                    <a href="{{route('dokter.obat.edit', $obat->id  )}}" class="btn btn-secondary btn-sm">Edit</a>
+                                    <form action="{{route('dokter.obat.destroy', $obat->id)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row" class="align-middle text-start">2</th>
-                                <td class="align-middle text-start">Amoxicillin</td>
-                                <td class="align-middle text-start">Kapsul 250 mg</td>
-                                <td class="align-middle text-start">Rp15.000</td>
-                                <td class="flex items-center gap-3">
-                                    <a href="#" class="btn btn-secondary btn-sm">Edit</a>
-                                    <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="align-middle text-start">3</th>
-                                <td class="align-middle text-start">Ibuprofen</td>
-                                <td class="align-middle text-start">Tablet 400 mg</td>
-                                <td class="align-middle text-start">Rp12.000</td>
-                                <td class="flex items-center gap-3">
-                                    <a href="#" class="btn btn-secondary btn-sm">Edit</a>
-                                    <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </section>
