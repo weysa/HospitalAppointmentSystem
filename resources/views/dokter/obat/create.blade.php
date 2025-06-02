@@ -1,5 +1,3 @@
-create
-
 <!-- resources/views/obat/create-dummy.blade.php -->
 <x-app-layout>
     <x-slot name="header">
