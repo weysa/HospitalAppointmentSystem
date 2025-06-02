@@ -30,11 +30,11 @@ class JadwalPeriksaController extends Controller
         return redirect()->route('dokter.jadwal-periksa.index');
     }
 
-    public function edit($id)
-    {
-        $jadwalPeriksas = JadwalPeriksa::findOrFail($id);
-        return view('dokter.jadwal-periksa.create', compact('jadwalPeriksas'));
-    }
+    // public function edit($id)
+    // {
+    //     $jadwalPeriksas = JadwalPeriksa::findOrFail($id);
+    //     return view('dokter.jadwal-periksa.create', compact('jadwalPeriksas'));
+    // }
 
     public function update(Request $request, $id)
     {
