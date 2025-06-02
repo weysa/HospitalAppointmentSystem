@@ -50,8 +50,11 @@
                                         @endif
                                     </td>
                                     <td class="align-middle text-start">
-                                        <button type="button" class="btn btn-success btn-sm">Aktifkan</button>
-                                        <button type="button" class="btn btn-danger btn-sm">Nonaktifkan</button>
+                                        @if ($jadwalPeriksa->status == 0)
+                                            <button type="button" class="btn btn-success btn-sm">Aktifkan</button>
+                                        @else
+                                            <button type="button" class="btn btn-danger btn-sm">Nonaktifkan</button>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
