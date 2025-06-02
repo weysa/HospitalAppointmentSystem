@@ -16,7 +16,7 @@
                         </h2>
 
                         <div class="flex-col items-center justify-center text-center">
-                            <a type="button" class="btn btn-primary" href="#">Tambah Jadwal Periksa</a>
+                            <a type="button" class="btn btn-primary" href="{{route('dokter.jadwal-periksa.create')}}">Tambah Jadwal Periksa</a>
                         </div>
                     </header>
 

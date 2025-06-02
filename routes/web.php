@@ -1,9 +1,11 @@
 <?php
 
 use App\Models\Obat;
+use App\Models\JadwalPeriksa;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\JadwalPeriksaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,6 +38,14 @@ Route::middleware('auth')->group(function () {
 
         });
 
+        Route::prefix('jadwal-periksa')->group(function () {
+            Route::get('/', [JadwalPeriksaController::class, 'index'])->name('dokter.jadwal-periksa.index');
+
+            Route::get('/create', [JadwalPeriksaController::class, 'create'])->name('dokter.jadwal-periksa.create');
+
+            Route::get('/edit/{id}', [JadwalPeriksaController::class, 'edit'])->name('dokter.jadwal-periksa.edit');
+
+        });
     });
 });
 
