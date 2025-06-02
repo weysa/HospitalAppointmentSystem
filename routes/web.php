@@ -42,8 +42,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/', [JadwalPeriksaController::class, 'index'])->name('dokter.jadwal-periksa.index');
 
             Route::get('/create', [JadwalPeriksaController::class, 'create'])->name('dokter.jadwal-periksa.create');
-
-            Route::get('/edit/{id}', [JadwalPeriksaController::class, 'edit'])->name('dokter.jadwal-periksa.edit');
+            Route::post('/store', [JadwalPeriksaController::class, 'store'])->name('dokter.jadwal-periksa.store');
+            Route::patch('/update/{id}', [JadwalPeriksaController::class, 'update'])->name('dokter.jadwal-periksa.update');            
+            // Route::get('/edit/{id}', [JadwalPeriksaController::class, 'edit'])->name('dokter.jadwal-periksa.edit');
 
         });
     });

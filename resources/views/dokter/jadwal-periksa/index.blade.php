@@ -34,7 +34,7 @@
                         <tbody>
                             @foreach ($jadwalPeriksas as $jadwalPeriksa )
                                 <tr>
-                                    <th scope="row" class="align-middle text-start">{{ $jadwalPeriksa->id }}</th>
+                                    <th scope="row" class="align-middle text-start">{{ $loop->iteration }}</th>
                                     <td class="align-middle text-start">{{ $jadwalPeriksa->hari }}</td>
                                     <td class="align-middle text-start">{{ \Carbon\Carbon::parse($jadwalPeriksa->jam_mulai)->format('H.i') }}</td>
                                     <td class="align-middle text-start">{{ \Carbon\Carbon::parse($jadwalPeriksa->jam_selesai)->format('H.i') }}</td>
@@ -50,11 +50,15 @@
                                         @endif
                                     </td>
                                     <td class="align-middle text-start">
-                                        @if ($jadwalPeriksa->status == 0)
-                                            <button type="button" class="btn btn-success btn-sm">Aktifkan</button>
-                                        @else
-                                            <button type="button" class="btn btn-danger btn-sm">Nonaktifkan</button>
-                                        @endif
+                                        <form action="{{ route('dokter.jadwal-periksa.update', $jadwalPeriksa->id) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH') <!-- Change to PATCH method -->
+                                            @if ($jadwalPeriksa->status == 0)
+                                                <button type="submit" class="btn btn-success btn-sm">Aktifkan</button>
+                                            @else
+                                                <button type="submit" class="btn btn-danger btn-sm">Nonaktifkan</button>
+                                            @endif
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

@@ -21,10 +21,29 @@ class JadwalPeriksaController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'hari' => 'required|string',
+            'jam_mulai' => 'required|date_format:H:i',
+            'jam_selesai' => 'required|date_format:H:i|after:jam_mulai',
+        ]);
+
+        // cek apakah ada jadwal sama
+        if (
+            JadwalPeriksa::where('id_dokter', Auth::user()->id)
+            ->where('hari', $request->hari)
+            ->where('jam_mulai', $request->jam_mulai)
+            ->where('jam_selesai', $request->jam_selesai)
+            ->exists()
+        ) {
+            return redirect()->route('dokter.jadwal-periksa.create')->withErrors(['Jadwal sudah ada']);
+        }
+
         JadwalPeriksa::create([
-            // 'nama_obat' => $request->nama_obat,
-            // 'kemasan' => $request->kemasan,
-            // 'harga' => $request->harga,
+            'id_dokter' => Auth::user()->id,
+            'hari' => $request->hari,
+            'jam_mulai' => $request->jam_mulai,
+            'jam_selesai' => $request->jam_selesai,
+            'status' => 0,
         ]);
 
         return redirect()->route('dokter.jadwal-periksa.index');
@@ -36,16 +55,27 @@ class JadwalPeriksaController extends Controller
     //     return view('dokter.jadwal-periksa.create', compact('jadwalPeriksas'));
     // }
 
-    public function update(Request $request, $id)
+    public function update(
+        // Request $request, 
+        $id)
     {
-        $jadwalPeriksas = JadwalPeriksa::findOrFail($id);
-        $jadwalPeriksas->update([
-            // 'nama_obat' => $request->nama_obat,
-            // 'kemasan' => $request->kemasan,
-            // 'harga' => $request->harga,
-        ]);
+        $jadwalPeriksa = JadwalPeriksa::findOrFail($id);
 
-        return redirect()->route('dokter.jadwal-periksa.create');
+        // mengaktifkan
+        if($jadwalPeriksa->status == 0)
+        {
+            JadwalPeriksa::where( 'id_dokter', Auth::user()->id )->update( ['status' => 0] );
+
+            $jadwalPeriksa->status = 1;
+            $jadwalPeriksa->save();
+
+            return redirect()->route('dokter.jadwal-periksa.index');
+        }
+        // me-nonaktifkan
+        $jadwalPeriksa->status = 0;
+        $jadwalPeriksa->save();
+
+        return redirect()->route('dokter.jadwal-periksa.index');
     }
 
     public function destroy($id)
@@ -53,6 +83,6 @@ class JadwalPeriksaController extends Controller
         $jadwalPeriksas = JadwalPeriksa::findOrFail($id);
         $jadwalPeriksas->delete();
 
-        return redirect()->route('dokter.jadwal-periksa.create');
+        return redirect()->route('dokter.jadwal-periksa.index');
     }
 }

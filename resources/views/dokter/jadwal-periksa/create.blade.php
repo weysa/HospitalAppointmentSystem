@@ -20,8 +20,18 @@
                                 {{ __('Silakan isi form di bawah ini untuk menambahkan jadwal pemeriksaan dokter sesuai dengan hari dan waktu yang tersedia.') }}
                             </p>
                         </header>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
-                        <form class="mt-6" id="formJadwal" action="#" method="POST">
+                        <form class="mt-6" id="formJadwal" action="{{route('dokter.jadwal-periksa.store')}}" method="POST">
+                            @csrf
                             <div class="mb-3 form-group">
                                 <label for="hariSelect">Hari</label>
                                 <select class="form-control" name="hari" id="hariSelect">
