@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\JadwalPeriksa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JadwalPeriksaController extends Controller
 {
     public function index()
     {
-        $jadwalPeriksas = JadwalPeriksa::all();
+        $jadwalPeriksas = JadwalPeriksa::where('id_dokter', Auth::user()->id)->get();
         return view('dokter.jadwal-periksa.index', compact('jadwalPeriksas'));
     }
 
