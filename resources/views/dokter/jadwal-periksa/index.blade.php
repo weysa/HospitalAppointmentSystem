@@ -36,8 +36,8 @@
                                 <tr>
                                     <th scope="row" class="align-middle text-start">{{ $jadwalPeriksa->id }}</th>
                                     <td class="align-middle text-start">{{ $jadwalPeriksa->hari }}</td>
-                                    <td class="align-middle text-start">{{ $jadwalPeriksa->jam_mulai }}</td>
-                                    <td class="align-middle text-start">{{ $jadwalPeriksa->jam_selesai }}</td>
+                                    <td class="align-middle text-start">{{ \Carbon\Carbon::parse($jadwalPeriksa->jam_mulai)->format('H.i') }}</td>
+                                    <td class="align-middle text-start">{{ \Carbon\Carbon::parse($jadwalPeriksa->jam_selesai)->format('H.i') }}</td>
                                     <td class="align-middle text-start">
                                         @if ($jadwalPeriksa->status == 0)
                                             <span class="badge badge-pill badge-danger">
