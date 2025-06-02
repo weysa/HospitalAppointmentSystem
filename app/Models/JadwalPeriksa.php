@@ -12,6 +12,7 @@ class JadwalPeriksa extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'id_dokter',
         'hari',
         'jam_mulai',
