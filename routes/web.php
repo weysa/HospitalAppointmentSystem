@@ -2,10 +2,12 @@
 
 use App\Models\Obat;
 use App\Models\JadwalPeriksa;
+use App\Models\JanjiPeriksa;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\JadwalPeriksaController;
+use App\Http\Controllers\JanjiPeriksaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,6 +50,21 @@ Route::middleware('auth')->group(function () {
 
         });
     });
+
+    Route::middleware(['role:pasien'])->prefix('pasien')->group(function () {
+        Route::get('/', function () {
+            return view('pasien.dashboard');
+        })->name('pasien.dashboard');
+
+        Route::prefix('janji-periksa')->group(function () {
+            Route::get('/', [JanjiPeriksaController::class, 'index'])->name('pasien.janji-periksa.index');
+
+            Route::get('/create', [JanjiPeriksaController::class, 'create'])->name('pasien.janji-periksa.create');
+
+        });
+
+    });
+
 });
 
 require __DIR__.'/auth.php';
