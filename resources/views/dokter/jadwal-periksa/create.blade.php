@@ -1,4 +1,3 @@
-<!-- resources/views/jadwal-periksa/create-dummy.blade.php -->
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
@@ -21,12 +20,14 @@
                             </p>
                         </header>
 
-                        <form class="mt-6" id="formJadwal" action="#" method="POST">
+                        <form class="mt-6" id="formJadwal" action="{{ route('dokter.jadwal-periksa.store') }}"
+                            method="POST">
+                            @csrf
                             <div class="mb-3 form-group">
                                 <label for="hariSelect">Hari</label>
-                                <select class="form-control" name="hari" id="hariSelect">
+                                <select class="form-control" name="hari" id="hariSelect" required>
                                     <option value="">Pilih Hari</option>
-                                    <option selected>Senin</option>
+                                    <option>Senin</option>
                                     <option>Selasa</option>
                                     <option>Rabu</option>
                                     <option>Kamis</option>
@@ -38,15 +39,15 @@
 
                             <div class="mb-3 form-group">
                                 <label for="jamMulai">Jam Mulai</label>
-                                <input type="time" class="form-control" id="jamMulai" name="jam_mulai" value="08:00">
+                                <input type="time" class="form-control" id="jamMulai" name="jam_mulai" required>
                             </div>
 
                             <div class="mb-4 form-group">
                                 <label for="jamSelesai">Jam Selesai</label>
-                                <input type="time" class="form-control" id="jamSelesai" name="jam_selesai" value="12:00">
+                                <input type="time" class="form-control" id="jamSelesai" name="jam_selesai" required>
                             </div>
-
-                            <a type="button" href="#" class="btn btn-secondary">
+                            <a type="button" href="{{ route('dokter.jadwal-periksa.index') }}"
+                                class="btn btn-secondary">
                                 Batal
                             </a>
                             <button type="submit" class="btn btn-primary">
