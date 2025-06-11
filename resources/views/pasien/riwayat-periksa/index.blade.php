@@ -45,53 +45,6 @@
                                 </td>
                                 <td class="align-middle text-start">
                                     <a href="#" class="btn btn-info">Detail</a>
-                                    <!-- Modal -->
-                                    <div class="modal fade bd-example-modal-lg" id="detailModal1" tabindex="-1" role="dialog" aria-labelledby="detailModalTitle1" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <!-- Modal Header -->
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title font-weight-bold" id="riwayatModalLabel1">
-                                                        Detail Riwayat Pemeriksaan
-                                                    </h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <!-- Modal Body -->
-                                                <div class="modal-body">
-                                                    <ul class="list-group">
-                                                        <li class="list-group-item">
-                                                            <strong>Poliklinik:</strong> Umum
-                                                        </li>
-                                                        <li class="list-group-item">
-                                                            <strong>Nama Dokter:</strong> Dr. Ahmad
-                                                        </li>
-                                                        <li class="list-group-item">
-                                                            <strong>Hari Pemeriksaan:</strong> Senin
-                                                        </li>
-                                                        <li class="list-group-item">
-                                                            <strong>Jam Mulai:</strong> 08.00
-                                                        </li>
-                                                        <li class="list-group-item">
-                                                            <strong>Jam Selesai:</strong> 10.00
-                                                        </li>
-                                                    </ul>
-                                                    <div class="mt-4 text-center">
-                                                        <div class="mb-2 h5 font-weight-bold">Nomor Antrian Anda</div>
-                                                        <span class="badge badge-primary" style="font-size: 1.75rem; padding: 0.6em 1.2em;">
-                                                            5
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <!-- Modal Footer -->
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                        Tutup
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </td>
                             </tr>

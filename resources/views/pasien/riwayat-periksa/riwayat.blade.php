@@ -14,7 +14,7 @@
                             Riwayat Pemeriksaan
                         </h2>
                         <p class="mt-1 text-sm text-gray-600">
-                            Informasi lengkap mengenai jadwal pemeriksaan Anda.
+                            Silahkan menuju ke administarsi untuk pembayaran biaya pemeriksaan yang telah dilakukan.
                         </p>
                     </header>
 
