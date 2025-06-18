@@ -10,11 +10,11 @@ class RiwayatPeriksaController extends Controller
 {
     public function index()
     {
-        $janjiPeriksa = JanjiPeriksa::where('id_pasien', auth()->user()->id)
+        $janjiPeriksas = JanjiPeriksa::where('id_pasien', auth()->user()->id)
             ->get();
 
         return view('pasien.riwayat-periksa.index')->with([
-            'janjiPeriksa' => $janjiPeriksa,
+            'janjiPeriksas' => $janjiPeriksas,
         ]);
     }
 
