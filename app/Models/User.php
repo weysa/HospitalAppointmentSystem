@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo; //Import class yang diperlukan untuk relationship
 
 class User extends Authenticatable
 {
@@ -26,7 +27,7 @@ class User extends Authenticatable
         'no_ktp',
         'no_hp',
         'no_rm',
-        'poli',
+        'id_poli', //Update array fillable dengan mengganti field poli menjadi id_poli
     ];
 
     /**
@@ -60,5 +61,10 @@ class User extends Authenticatable
     public function janjiPeriksas()
     {
         return $this->hasMany(JanjiPeriksa::class, 'id_pasien');
+    }
+
+    public function poli(): BelongsTo //Tambahkan method relationship belongsTo ke model Poli
+    {
+        return $this->belongsTo(Poli::class, 'id_poli');
     }
 }

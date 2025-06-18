@@ -18,7 +18,17 @@
                         <div class="flex-col items-center justify-center text-center">
                             <a href="{{route('dokter.obat.create')}}" class="btn btn-primary">Tambah Obat</a>
                         </div>
+
+                        <div class="flex-col items-center justify-center text-center">
+                            <a href="{{route('dokter.obat.indexDeleted')}}" class="btn btn-primary">Obat Terhapus</a>
+                        </div>
                     </header>
+
+                    @if (session('status'))
+                        <div class="px-4 py-2 mt-4 text-green-800 bg-green-200 border border-green-300 rounded">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
                     <table class="table mt-6 overflow-hidden rounded table-hover">
                         <thead class="thead-light">
@@ -33,7 +43,7 @@
                         <tbody>
                             @foreach ($obats as $obat )
                             <tr>
-                                <th scope="row" class="align-middle text-start">{{ $obat->id }}</th>
+                                <th scope="row" class="align-middle text-start">{{ $loop->iteration }}</th>
                                 <td class="align-middle text-start">{{ $obat->nama_obat }}</td>
                                 <td class="align-middle text-start">{{ $obat->kemasan }}</td>
                                 <td class="align-middle text-start">{{ $obat->harga }}</td>

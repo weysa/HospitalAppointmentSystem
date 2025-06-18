@@ -17,6 +17,15 @@ class ObatController extends Controller
         return view('dokter.obat.index', compact('obats'));
     }
 
+    public function indexDeleted()
+    {
+        $obats = Obat::onlyTrashed()->get();
+
+        return view('dokter.obat.indexDeleted')->with([
+            'obats' => $obats,
+        ]);
+    }
+
     public function create()
     {
         return view('dokter.obat.create');
@@ -30,7 +39,7 @@ class ObatController extends Controller
             'harga' => $request->harga,
         ]);
 
-        return redirect()->route('dokter.obat.index');
+        return redirect()->route('dokter.obat.index')->with('status', 'Obat berhasil ditambahkan!');
     }
 
     public function edit($id)
@@ -48,7 +57,7 @@ class ObatController extends Controller
             'harga' => $request->harga,
         ]);
 
-        return redirect()->route('dokter.obat.index');
+        return redirect()->route('dokter.obat.index')->with('status', 'Obat berhasil diperbarui!');
     }
 
     public function destroy($id)
@@ -56,6 +65,18 @@ class ObatController extends Controller
         $obat = Obat::findOrFail($id);
         $obat->delete();
 
-        return redirect()->route('dokter.obat.index');
+        return redirect()->route('dokter.obat.index')->with('status', 'Obat berhasil dihapus!');
+    }
+
+    public function restore($id)
+    {
+        // Cari data di "tempat sampah" (trashed) berdasarkan ID
+        $obat = Obat::onlyTrashed()->findOrFail($id);
+
+        // Jalankan method restore()
+        $obat->restore();
+
+        // Redirect kembali ke halaman daftar obat terhapus dengan pesan sukses
+        return redirect()->route('dokter.obat.indexDeleted')->with('status', 'Obat berhasil dipulihkan!');
     }
 }
