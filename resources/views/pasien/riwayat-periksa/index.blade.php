@@ -47,19 +47,19 @@
                                     </td>
                                     <td class="align-middle text-start">{{ $janjiPeriksa->no_antrian }}</td>
                                     <td class="align-middle text-start">
-                                        @if ($janjiPeriksa->jadwalPeriksa->status == 1)
-                                            <span class="badge badge-pill badge-success">Sudah Diperiksa</span>
-                                        @else
+                                        @if (is_null($janjiPeriksa->periksa))
                                             <span class="badge badge-pill badge-warning">Belum Diperiksa</span>
+                                        @else
+                                            <span class="badge badge-pill badge-success">Sudah Diperiksa</span>
                                         @endif
                                     </td>
                                     <td class="align-middle text-start">
-                                        @if ($janjiPeriksa->jadwalPeriksa->status == 1)
-                                            <a href="{{ route('pasien.riwayat-periksa.riwayat', $janjiPeriksa->id) }}"
-                                                class="btn btn-info">Riwayat</a>
-                                        @else
+                                        @if (is_null($janjiPeriksa->periksa))
                                             <a href="{{ route('pasien.riwayat-periksa.detail', $janjiPeriksa->id) }}"
                                                 class="btn btn-info">Detail</a>
+                                        @else
+                                            <a href="{{ route('pasien.riwayat-periksa.riwayat', $janjiPeriksa->id) }}"
+                                                class="btn btn-info">Riwayat</a>
                                         @endif
                                     </td>
                                 </tr>
